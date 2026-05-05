@@ -20,7 +20,60 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Deployment on Vercel
+
+This project is optimized for deployment on Vercel.
+
+### 1. Prerequisites
+
+- A [Supabase](https://supabase.com/) project.
+- An [OpenAI](https://openai.com/) API key.
+
+### 2. Environment Variables
+
+Configure the following environment variables in your Vercel project settings:
+
+| Variable | Description |
+| :--- | :--- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase Project Anon Key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Your Supabase Service Role Key (for admin access) |
+| `OPENAI_API_KEY` | Your OpenAI API Key |
+
+### 3. Database Schema
+
+Ensure your Supabase project has the following tables:
+
+**`jobs`**
+- `id`: uuid (primary key)
+- `company_name`: text
+- `role_name`: text
+- `posting_details`: text
+- `posting_date`: text
+- `jd_text`: text
+- `jd_locked`: boolean (default: false)
+- `created_at`: timestamp with time zone (default: now())
+
+**`resumes`**
+- `id`: uuid (primary key)
+- `job_id`: uuid (foreign key to `jobs.id`)
+- `original_filename`: text
+- `candidate_name`: text
+- `status`: text (UPLOADED, PARSING, QUEUED, PROCESSING, OPTIMIZED, etc.)
+- `raw_text`: text
+- `optimized_content`: jsonb
+- `version`: integer (default: 1)
+- `error_message`: text
+- `created_at`: timestamp with time zone (default: now())
+
+### 4. Deploy
+
+1. Connect your GitHub repository to Vercel.
+2. Add the environment variables listed above.
+3. Deploy!
+
 ## Learn More
+
 
 To learn more about Next.js, take a look at the following resources:
 
