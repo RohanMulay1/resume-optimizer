@@ -8,8 +8,10 @@ import type { Job } from "@/lib/types";
 export default function Dashboard() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchJobs = () => {
+    setLoading(true);
     fetch("/api/jobs")
       .then((r) => r.json())
       .then((data) => {
@@ -17,7 +19,33 @@ export default function Dashboard() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchJobs();
   }, []);
+
+  const deleteJob = async (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!confirm("Are you sure you want to delete this job and all its resumes?")) return;
+
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/jobs/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        setJobs((prev) => prev.filter((j) => j.id !== id));
+      } else {
+        alert("Failed to delete job");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred while deleting");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
@@ -56,7 +84,7 @@ export default function Dashboard() {
           <span className="text-sm text-[#bbb] uppercase tracking-widest">Jobs</span>
         </div>
 
-        {loading ? (
+        {loading && jobs.length === 0 ? (
           <div className="flex items-center gap-3 text-[#999] py-16 justify-center">
             <div className="w-5 h-5 border-2 border-[#ddd] border-t-[#999] rounded-full animate-spin" />
             <span className="text-base">Loading...</span>
@@ -78,9 +106,9 @@ export default function Dashboard() {
               <Link
                 key={job.id}
                 href={`/jobs/${job.id}`}
-                className="flex items-center justify-between bg-white border border-[#e8e8e8] rounded-xl px-6 py-5 hover:border-[#ccc] hover:shadow-sm transition-all group"
+                className="flex items-center justify-between bg-white border border-[#e8e8e8] rounded-xl px-6 py-5 hover:border-[#ccc] hover:shadow-sm transition-all group relative"
               >
-                <div className="min-w-0">
+                <div className="min-w-0 pr-12">
                   <div className="text-lg font-medium text-[#111] group-hover:text-black truncate">
                     {job.role_name}
                   </div>
@@ -107,6 +135,18 @@ export default function Dashboard() {
                   <span className="text-base text-[#ccc]">
                     {new Date(job.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                   </span>
+                  <button
+                    onClick={(e) => deleteJob(e, job.id)}
+                    disabled={deletingId === job.id}
+                    className="text-[#eee] hover:text-red-500 transition-colors p-2 rounded-md hover:bg-red-50 group-hover:text-[#ddd] z-10"
+                    title="Delete Job"
+                  >
+                    {deletingId === job.id ? (
+                      <div className="w-4 h-4 border-2 border-red-200 border-t-red-500 rounded-full animate-spin" />
+                    ) : (
+                      "✕"
+                    )}
+                  </button>
                   <span className="text-[#ccc] group-hover:text-[#999] transition-colors text-lg">→</span>
                 </div>
               </Link>
