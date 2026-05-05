@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import type { Job, Resume, ResumeStatus } from "@/lib/types";
 
@@ -135,9 +136,7 @@ export default function JobPage() {
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
       <header className="bg-white border-b border-[#e8e8e8] px-8 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-[#111] rounded-md flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-base font-bold">R</span>
-          </div>
+          <Image src="/logo-mesa.png" alt="Mesa Logo" width={32} height={32} className="rounded-md object-contain" />
           <Link href="/" className="text-lg text-[#999] hover:text-[#555] transition-colors">
             Resume Optimizer
           </Link>

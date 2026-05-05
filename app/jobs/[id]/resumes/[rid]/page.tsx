@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Resume, ResumeContent } from "@/lib/types";
 
 type ExpEntry = { title: string; company: string; duration: string; bullets: string[] };
@@ -160,9 +161,7 @@ export default function ResumeEditorPage() {
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
       <header className="bg-white border-b border-[#e8e8e8] px-8 py-4 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-3">
-          <div className="w-7 h-7 bg-[#111] rounded-md flex items-center justify-center">
-            <span className="text-white text-sm font-bold">R</span>
-          </div>
+          <Image src="/logo-mesa.png" alt="Mesa Logo" width={28} height={28} className="rounded-md object-contain" />
           <Link href="/" className="text-base text-[#999] hover:text-[#555] transition-colors">
             Resume Optimizer
           </Link>
