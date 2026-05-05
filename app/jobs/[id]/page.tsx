@@ -136,7 +136,7 @@ export default function JobPage() {
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
       <header className="bg-white border-b border-[#e8e8e8] px-8 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Image src="/logo-mesa.png" alt="Mesa Logo" width={32} height={32} className="rounded-md object-contain" />
+          <Image src="/logo-mesa.png" alt="Mesa Logo" width={110} height={32} className="object-contain" />
           <Link href="/" className="text-lg text-[#999] hover:text-[#555] transition-colors">
             Resume Optimizer
           </Link>

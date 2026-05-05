@@ -161,7 +161,7 @@ export default function ResumeEditorPage() {
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
       <header className="bg-white border-b border-[#e8e8e8] px-8 py-4 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-3">
-          <Image src="/logo-mesa.png" alt="Mesa Logo" width={28} height={28} className="rounded-md object-contain" />
+          <Image src="/logo-mesa.png" alt="Mesa Logo" width={100} height={28} className="object-contain" />
           <Link href="/" className="text-base text-[#999] hover:text-[#555] transition-colors">
             Resume Optimizer
           </Link>
