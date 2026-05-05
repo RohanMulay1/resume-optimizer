@@ -138,13 +138,13 @@ export default function Dashboard() {
                   <button
                     onClick={(e) => deleteJob(e, job.id)}
                     disabled={deletingId === job.id}
-                    className="text-[#eee] hover:text-red-500 transition-colors p-2 rounded-md hover:bg-red-50 group-hover:text-[#ddd] z-10"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-all border border-red-100 z-10 shadow-sm"
                     title="Delete Job"
                   >
                     {deletingId === job.id ? (
-                      <div className="w-4 h-4 border-2 border-red-200 border-t-red-500 rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     ) : (
-                      "✕"
+                      <span className="text-lg leading-none">✕</span>
                     )}
                   </button>
                   <span className="text-[#ccc] group-hover:text-[#999] transition-colors text-lg">→</span>
