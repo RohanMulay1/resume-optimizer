@@ -134,20 +134,20 @@ export default function JobPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
-      <header className="bg-white border-b border-[#e8e8e8] px-8 py-5 flex items-center justify-between">
+      <header className="bg-[#111] border-b border-[#222] px-8 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Image src="/logo-mesa.png" alt="Mesa Logo" width={110} height={32} className="object-contain" />
-          <Link href="/" className="text-lg text-[#999] hover:text-[#555] transition-colors">
+          <Link href="/" className="text-lg text-[#888] hover:text-white transition-colors">
             Resume Optimizer
           </Link>
-          <span className="text-[#ddd]">/</span>
-          <span className="text-lg font-medium text-[#111] truncate max-w-xs">{job.role_name}</span>
-          <span className="text-base text-[#bbb] hidden sm:block">@ {job.company_name}</span>
+          <span className="text-[#444]">/</span>
+          <span className="text-lg font-medium text-white truncate max-w-xs">{job.role_name}</span>
+          <span className="text-base text-[#666] hidden sm:block">@ {job.company_name}</span>
         </div>
         {optimizedCount > 0 && (
           <a
             href={`/api/jobs/${id}/export`}
-            className="text-base bg-green-50 text-green-700 border border-green-200 px-4 py-2.5 rounded-lg hover:bg-green-100 transition-colors"
+            className="text-base bg-white text-[#111] px-4 py-2.5 rounded-lg hover:bg-[#eee] transition-colors"
           >
             ↓ Export All ({optimizedCount})
           </a>

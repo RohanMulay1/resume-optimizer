@@ -159,36 +159,36 @@ export default function ResumeEditorPage() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
-      <header className="bg-white border-b border-[#e8e8e8] px-8 py-4 flex items-center justify-between sticky top-0 z-10">
+      <header className="bg-[#111] border-b border-[#222] px-8 py-4 flex items-center justify-between sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <Image src="/logo-mesa.png" alt="Mesa Logo" width={100} height={28} className="object-contain" />
-          <Link href="/" className="text-base text-[#999] hover:text-[#555] transition-colors">
+          <Link href="/" className="text-base text-[#888] hover:text-white transition-colors">
             Resume Optimizer
           </Link>
-          <span className="text-[#ddd]">/</span>
-          <Link href={`/jobs/${id}`} className="text-base text-[#999] hover:text-[#555] transition-colors">
+          <span className="text-[#444]">/</span>
+          <Link href={`/jobs/${id}`} className="text-base text-[#888] hover:text-white transition-colors">
             {resume.candidate_name?.split(" ")[0] ?? "job"}
           </Link>
-          <span className="text-[#ddd]">/</span>
-          <span className="text-base font-medium text-[#111]">{resume.candidate_name}</span>
-          <span className="text-base text-[#bbb] bg-gray-100 px-2.5 py-0.5 rounded-full">
+          <span className="text-[#444]">/</span>
+          <span className="text-base font-medium text-white">{resume.candidate_name}</span>
+          <span className="text-sm text-[#888] bg-[#222] px-2.5 py-0.5 rounded-full">
             v{resume.version}
           </span>
         </div>
         <div className="flex items-center gap-3">
           {saved && (
-            <span className="text-base text-green-600 font-medium">✓ Saved</span>
+            <span className="text-base text-green-500 font-medium">✓ Saved</span>
           )}
           <a
             href={`/api/resumes/${rid}/pdf`}
-            className="text-base bg-green-50 text-green-700 border border-green-200 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors"
+            className="text-base bg-white text-[#111] px-4 py-2 rounded-lg hover:bg-[#eee] transition-colors"
           >
             ↓ Download PDF
           </a>
           <button
             onClick={save}
             disabled={saving}
-            className="text-base bg-[#111] text-white px-5 py-2 rounded-lg font-medium hover:bg-[#333] disabled:opacity-40 transition-colors"
+            className="text-base bg-white text-[#111] px-5 py-2 rounded-lg font-medium hover:bg-[#eee] disabled:opacity-40 transition-colors"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>

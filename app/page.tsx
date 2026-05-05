@@ -21,16 +21,16 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#fafafa] text-[#111]">
-      <header className="bg-white border-b border-[#e8e8e8] px-8 py-5 flex items-center justify-between">
+      <header className="bg-[#111] border-b border-[#222] px-8 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Image src="/logo-mesa.png" alt="Mesa Logo" width={110} height={32} className="object-contain" />
-          <span className="text-lg font-semibold text-[#111] tracking-tight">Resume Optimizer</span>
-          <span className="text-[#ccc]">/</span>
-          <span className="text-lg text-[#999]">Dashboard</span>
+          <span className="text-lg font-semibold text-white tracking-tight">Resume Optimizer</span>
+          <span className="text-[#444]">/</span>
+          <span className="text-lg text-[#888]">Dashboard</span>
         </div>
         <Link
           href="/jobs/new"
-          className="text-base bg-[#111] text-white px-5 py-2.5 rounded-lg font-medium hover:bg-[#333] transition-colors"
+          className="text-base bg-white text-[#111] px-5 py-2.5 rounded-lg font-medium hover:bg-[#eee] transition-colors"
         >
           + New Job
         </Link>
